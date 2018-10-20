@@ -1,0 +1,2 @@
+parameters:
+	doctrine_driver: pdo_mysql

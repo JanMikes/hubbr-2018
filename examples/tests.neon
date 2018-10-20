@@ -1,0 +1,31 @@
+parameters:
+	doctrine_driver: pdo_sqlite
+
+	translations:
+		dir: '%appDir%/../tests/lang'
+
+	messageBird:
+		enabled: false
+
+doctrine:
+	wrapperClass: Entrydo\Tests\Utils\DoctrineConnectionMock
+	memory: true
+	driver: %doctrine_driver%
+	metadataCache: default
+	queryCache: default
+	resultCache: default
+	hydrationCache: default
+
+services:
+	mailer: Entrydo\Infrastructure\Mailing\DummyMailer
+	ares:
+		class: h4kuna\Ares\Ares
+		factory: Entrydo\Tests\Utils\AresMockFactory::create()
+
+console:
+	disabled: true
+
+monolog:
+	name: entrydo-tests
+	handlers!: [Monolog\Handler\NullHandler]
+	processors!: []
